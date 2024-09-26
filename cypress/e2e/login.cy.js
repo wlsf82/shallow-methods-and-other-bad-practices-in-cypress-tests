@@ -44,4 +44,24 @@ describe('Login', () => {
     selectorsAll.login.username()
     selectorsAll.login.usernameTypeInTest('standard_user')
   })
+
+  it('successfully logs in with valid credentials', () => {
+    // Visit the login page
+    cy.visit('/')
+
+    // Fill in the usernamea
+    cy.get('[data-test="username"]').type('standard_user')
+
+    // Fill in the password
+    cy.get('[data-test="password"]').type('secret_sauce')
+
+    // Submit the form
+    cy.get('input[type="submit"]').click()
+
+    // Assert that the user is redirected to the inventory page
+    cy.url().should('include', '/inventory')
+
+    // Assert that the Products title is visible
+    cy.contains('.title', 'Products').should('be.visible')
+  })
 })
