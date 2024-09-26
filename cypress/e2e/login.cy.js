@@ -45,6 +45,7 @@ describe('Login', () => {
     selectorsAll.login.usernameTypeInTest('standard_user')
   })
 
+  // The below test is the only one without bad practices
   it('successfully logs in with valid credentials', () => {
     // Visit the login page
     cy.visit('/')
